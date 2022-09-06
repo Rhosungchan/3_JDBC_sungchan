@@ -12,7 +12,7 @@ public class JDBCExample {
 	public static void main(String[] args) {
 
 		// JDBC : java에서 DB에 연결(접근)할 수 있게 해주는 Java Programming API
-		// (Java에 기본 내장된 인터페이스)
+		//                                              (Java에 기본 내장된 인터페이스)
 		// java.sql 패키지에서 제공
 
 		// [JDBC를 이용한 애플리케이션을 만들 때 필요한 것]

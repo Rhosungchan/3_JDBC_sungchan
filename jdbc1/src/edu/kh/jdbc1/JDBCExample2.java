@@ -5,7 +5,11 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+
+import edu.kh.jdbc1.model.vo.Employee;
 
 public class JDBCExample2 {
 
@@ -42,6 +46,8 @@ public class JDBCExample2 {
 			stmt = conn.createStatement();
 			
 			rs = stmt.executeQuery(sql);
+			
+			List<Employee> list = new ArrayList<>(sql);
 			
 			// 3단계 : SQL을 수행해서 반환 받은 결과(ResultSet)를
 			//         한 행씩 접근해서 컬럼 값 받아오기
