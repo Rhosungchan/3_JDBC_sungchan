@@ -21,6 +21,8 @@ public class JDBCExample {
 		// 3. Oracle에서 Java 애플리케이션과 연결할 때 사용할 JDBC를 상속받아 구현한 클래스 모음
 		// (ojdbc11.jar 라이브러리)
 		// -> OracleDriver.class(JDBC 드라이버) 이용
+		// -> 오라클에서 제공하는 java와 연결하기 위한 라이브러리 (OracleDriver제공)
+		
 		// [프로젝트 우클릭]-[properties] - [Libraries] - [classpath] - [2번쨰 Add EX--] - 파일선택 -
 		// [적용]
 
