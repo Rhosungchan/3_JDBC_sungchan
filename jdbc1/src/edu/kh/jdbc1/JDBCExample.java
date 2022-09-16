@@ -37,7 +37,8 @@ public class JDBCExample {
 
 		Statement stmt = null;
 		// Connection을 통해
-		// SQL문을 DB에 전달하여 실행하고 생성된 결과(ResultSet, 성공한 행의 개수)를 반환(Java)하는 데 사용되는 객체
+		// SQL문을 DB에 전달하여 실행하고 생성된 결과(ResultSet, 성공한 행의 개수)를 
+		// 반환(Java)하는 데 사용되는 객체
 
 		ResultSet rs = null;
 		// SELECT 질의 성공 시 반환되는 조회 결과 집합을 나타내는 객체

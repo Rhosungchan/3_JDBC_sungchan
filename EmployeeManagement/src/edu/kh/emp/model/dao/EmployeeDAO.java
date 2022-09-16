@@ -25,7 +25,7 @@ public class EmployeeDAO {
 	// [필드] : Heap영역에 저장 , 변수가 비어있을 수 없음
 	// -> JVM이 지정한 기본값으로 초기화
 	// -> 참조형의 초기값은 null
-	// -> 뱔도 초기화 안해도 된다.
+	// -> 별도 초기화 안해도 된다.
 	// [지역변수] : Stack, 변수가 비어있을 수 있음
 	// =====================================================
 
@@ -207,7 +207,7 @@ public class EmployeeDAO {
 
 			// PreparedStatement 객체 사용 시 순서
 			// SQL 작성 -> PreparedStatement 객체 생성 (?가 포함된 SQL을 매개변수로 사용)
-			// -> ?에 알맞은 값 대입 -> SQL 수행ㅎ 후 결과 반환
+			// -> ?에 알맞은 값 대입 -> SQL 수행한 후 결과 반환
 
 			// PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);

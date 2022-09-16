@@ -14,83 +14,72 @@ import edu.kh.jdbc1.model.vo.Employee;
 public class JDBCExample2 {
 
 	public static void main(String[] args) {
-		
-		Scanner sc =new Scanner(System.in);
-		
+
+		Scanner sc = new Scanner(System.in);
+
 		// 1단계 : JDBC 객체 참조 변수 생성(Java.sql)
-		// 필드 생성 
-		Connection conn = null; // 연결 통로 생성 
-		Statement stmt = null;  // 연결 통로에 객체 생성 
-		ResultSet rs = null;    // 반환되는 결과값을 위한 생성 
-		
+		// 필드 생성
+		Connection conn = null; // 연결 통로 생성
+		Statement stmt = null; // 연결 통로에 객체 생성
+		ResultSet rs = null; // 반환되는 결과값을 위한 생성
+
 		try {
-			// 2단계 : 참조 변수에 알맞은 객체 대입 
-			
-			
+			// 2단계 : 참조 변수에 알맞은 객체 대입
+
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			String type = "jdbc:oracle:thin:@"; 
+			String type = "jdbc:oracle:thin:@";
 			String ip = "localhost";
-			String port = ":1521"; 
+			String port = ":1521";
 			String sid = ":XE";
-			String user = "kh_rsc"; 
+			String user = "kh_rsc";
 			String pw = "kh1234";
-			
-			conn = DriverManager.getConnection(type + ip + port + sid , user, pw);
-			
+
+			conn = DriverManager.getConnection(type + ip + port + sid, user, pw);
+
 			System.out.println("<입력 받은 급여보다 많이 받는(초과) 직원만 조회>");
 			System.out.print("급여 입력 : ");
 			int input = sc.nextInt();
 
-			String sql = "SELECT EMP_ID, EMP_NAME, SALARY FROM EMPLOYEE WHERE SALARY > " + input; 
-			
+			String sql = "SELECT EMP_ID, EMP_NAME, SALARY FROM EMPLOYEE WHERE SALARY > " + input;
+
 			stmt = conn.createStatement();
-			
+
 			rs = stmt.executeQuery(sql);
-			
-			List<Employee> list = new ArrayList<>(sql);
-			
+
 			// 3단계 : SQL을 수행해서 반환 받은 결과(ResultSet)를
-			//         한 행씩 접근해서 컬럼 값 받아오기
-			
-			
-			while(rs.next()) {
-				
+			// 한 행씩 접근해서 컬럼 값 받아오기
+
+			while (rs.next()) {
+
 				String empId = rs.getString("EMP_ID");
 				String empName = rs.getString("EMP_NAME");
 				int salary = rs.getInt("SALARY");
 				System.out.printf("사번 : %s / 이름 : %s / 급여 : %d\n", empId, empName, salary);
 			}
-			
-			
-		} catch(ClassNotFoundException e) {
+
+		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
-			
-		} catch(SQLException e) {
+
+		} catch (SQLException e) {
 			e.printStackTrace();
-			
+
 		} finally {
-			
+
 			// 4단계 : 사용한 JDBC 객체 자원 반환(close())
 			try {
-				
-				if(rs != null) rs.close();
-				if(stmt != null) stmt.close();
-				if(conn != null) conn.close();
-				
-				
-			} catch(SQLException e) {
+
+				if (rs != null)
+					rs.close();
+				if (stmt != null)
+					stmt.close();
+				if (conn != null)
+					conn.close();
+
+			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			
-		}
-		
-		
-		
-		
-		
-		
 
-		
-		
+		}
+
 	}
 }
