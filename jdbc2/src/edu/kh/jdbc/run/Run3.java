@@ -14,8 +14,8 @@ public class Run3 {
 
 		try {
 			
-		} catch() {
-			
+		} catch(Exception e) {
+			e.printStackTrace();
 		} finally {
 			
 		}
