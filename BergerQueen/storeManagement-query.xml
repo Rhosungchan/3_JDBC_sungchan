@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+ 	<comment>storeManagement-query.xml</comment>
+
+	<!-- 판매 내역 조회 -->
+	<entry key="selectSellList">
+	SELECT ORDERS_NO, ORDERS_DATE,
+	(SELECT  LISTAGG( MENU_NAME || '(' || MENU_PRICE || ') ' || AMOUNT || '개', ', ' )  WITHIN GROUP (ORDER BY MENU_NAME) 
+		FROM "ORDERS" O2
+		JOIN "ORDERS_MENU" ON (O2.ORDERS_NO = "ORDERS_MENU".ORDERS_NO)
+		JOIN "MENU" USING (MENU_NO)
+		WHERE O2.ORDERS_NO = O1.ORDERS_NO) AS MENU,
+	(SELECT SUM(MENU_PRICE)
+		FROM "ORDERS" O2
+		JOIN "ORDERS_MENU" ON (O2.ORDERS_NO = "ORDERS_MENU".ORDERS_NO)
+		JOIN "MENU" USING (MENU_NO)
+		WHERE O2.ORDERS_NO = O1.ORDERS_NO) TOTAL
+	FROM "ORDERS" O1
+	</entry>
+	
+	
+	<!-- 일별 매출 조회 -->
+	<entry key="seleasdt">
+	SELECT ORDERS_NO, ORDERS_DATE,
+	(SELECT  LISTAGG( MENU_NAME || '(' || MENU_PRICE || ') ' || AMOUNT || '개', ', ' )  WITHIN GROUP (ORDER BY MENU_NAME) 
+		FROM "ORDERS" O2
+		JOIN "ORDERS_MENU" ON (O2.ORDERS_NO = "ORDERS_MENU".ORDERS_NO)
+		JOIN "MENU" USING (MENU_NO)
+		WHERE O2.ORDERS_NO = O1.ORDERS_NO) AS MENU
+	,(SELECT SUM(MENU_PRICE)
+		FROM "ORDERS" O2
+		JOIN "ORDERS_MENU" ON (O2.ORDERS_NO = "ORDERS_MENU".ORDERS_NO)
+		JOIN "MENU" USING (MENU_NO)
+		WHERE O2.ORDERS_NO = O1.ORDERS_NO) TOTAL
+	FROM "ORDERS" O1
+	WHERE EXTRACT(MONTH FROM SYSDATE)||'월' = ? 
+	</entry>
+</properties>

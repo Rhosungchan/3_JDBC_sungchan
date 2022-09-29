@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+	<comment>user-query.xml</comment>
+	
+	<!-- 직원 정보 수정 -->
+	<entry key="updateUser">
+	UPDATE "USER" SET
+	USER_NAME = ?,
+	USER_GENDER = ?,
+	USER_NICKNAME = ?,
+	USER_PAY = ?,
+	USER_JOBNAME = ?,
+	PHONE = ?
+	WHERE USER_NO = ?
+	</entry>
+	
+	<!-- 직원 목록 조회 -->
+	<entry key="userAll">
+	SELECT USER_NO, USER_ID, USER_NAME, USER_GENDER, USER_NICKNAME, 
+	       USER_SSN, USER_PAY, USER_JOBNAME, PHONE 
+	FROM "USER"
+	ORDER BY USER_NO DESC
+	</entry>
+	
+	<!-- 비밀번호 변경 -->
+	<entry key="updatePw">
+	UPDATE "USER" SET
+	USER_PW = ?
+	WHERE USER_NO  = ? 
+	AND USER_PW  = ?
+	</entry>
+	
+	<!-- 회원 탈퇴 -->
+	<entry key="userDelete">
+	DELETE FROM "USER"  
+	WHERE USER_NAME = ?
+	</entry>
+	
+</properties>

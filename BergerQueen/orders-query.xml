@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+
+	<comment>orders-query.xml</comment>
+
+	<!-- 주문 번호 생성 -->
+	<entry key="nextOrdersNo">
+	SELECT SEQ_ORDERS_NO.NEXTVAL FROM DUAL
+	</entry>
+	
+	<!-- 주문 내역 생성 -->
+	<entry key="insertOrders">
+	INSERT INTO "ORDERS" VALUES(?, DEFAULT)
+	</entry>
+	
+	<!-- 주문별 테이블 삽입  -->
+	<entry key="insertOrderMenu">
+	INSERT INTO ORDERS_MENU VALUES(?, ?, ?)
+	</entry>
+
+</properties>

@@ -1,0 +1,16 @@
+
+ 테이블 1 
+ 	User 
+ 	
+ 	회원번호 	userNo
+ 	이름 	    userName 
+ 	성별 	    userGender 
+ 	출생년도    userSsn
+ 	별칭 		userNickname
+ 	입사일      userEnrolldate
+ 	시급 	    userPay
+ 	직급        userJobname 
+ 	전화번호    Phone
+ 	
+ 	
+
