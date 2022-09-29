@@ -62,7 +62,7 @@ public class CommentDAO {
 //		          comment.setCreateDate(rs.getString(5));
 		          
 		          // 방법 2. 컬럼명
-		          comment.setBoardNo(rs.getInt("COMMENT_NO"));
+		          comment.setCommentNo(rs.getInt("COMMENT_NO"));
 		          comment.setCommentContent(rs.getString("COMMENT_CONTENT"));
 		          comment.setMemberNo(rs.getInt("MEMBER_NO"));
 		          comment.setMemberName(rs.getString("MEMBER_NM"));
@@ -80,5 +80,85 @@ public class CommentDAO {
 		
 		
 		return commentList;
+	}
+	
+	/** 댓글 등록 DAO
+	 * @param conn
+	 * @param comment
+	 * @return result
+	 * @throws Exception
+	 */
+	public int insertComment(Connection conn, Comment comment) throws Exception{
+		int result = 0;
+		
+		try {
+			String sql = prop.getProperty("insertComment");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, comment.getCommentContent());
+			pstmt.setInt(2, comment.getMemberNo());
+			pstmt.setInt(3, comment.getBoardNo());
+			
+			result = pstmt.executeUpdate();
+			
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+ 
+	/** 댓글 수정 DAO
+	 * @param conn
+	 * @param commentNo
+	 * @param content
+	 * @return result
+	 * @throws Exception
+	 */
+	public int updateComment(Connection conn, int commentNo, String content) throws Exception{
+		int result = 0;
+		
+		try {
+			String sql = prop.getProperty("updateComment");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, content);
+			pstmt.setInt(2, commentNo);
+			
+			result = pstmt.executeUpdate();
+			
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	
+	/** 댓글 삭제 DAO
+	 * @param conn
+	 * @param commentNo
+	 * @return result
+	 * @throws Exception
+	 */
+	public int deleteComment(Connection conn, int commentNo) throws Exception{
+		
+		int result = 0;
+		
+		try {
+			String sql = prop.getProperty("deleteComment");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, commentNo);
+			
+			result = pstmt.executeUpdate();
+			
+		}finally {
+			close(pstmt);
+		}
+		return result;
+		
 	}
 }

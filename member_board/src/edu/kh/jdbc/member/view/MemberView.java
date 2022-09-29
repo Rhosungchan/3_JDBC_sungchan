@@ -56,9 +56,7 @@ public class MemberView {
 				case 2: selectAll(); break;
 				case 3: updateMember(); break;
 				case 4: updatePw(); break;
-				
 				case 5: secession(); break;
-				
 				case 0: System.out.println("[메인 메뉴로 이동합니다.]"); break;
 				default: System.out.println("[메뉴에 작성된 번호만 입력해주세요.]");
 					break;
